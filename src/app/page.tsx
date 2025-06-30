@@ -6,6 +6,7 @@ import DayForecast from "./components/DayForecast";
 import DarkModeButton from "@/app/components/DarkModeButton";
 import SummaryPanel from "@/app/components/SummaryPanel";
 import dynamic from "next/dynamic";
+import {DayForecastData, WeeklySummaryData} from "@/app/types/weather";
 //dynamic import because leaflet caused issues
 const MapPicker = dynamic(() => import("@/app/components/MapPicker"), {
     ssr: false,
@@ -18,13 +19,12 @@ export default function Home() {
     const [lon, setLon] = useState<number | null>(null);
     const [showMap, setShowMap] = useState(false);
 
-    const [forecast, setForecast] = useState<any[]>([]);
-    const [summary, setSummary] = useState<any | null>(null);
+    const [forecast, setForecast] = useState<DayForecastData[]>([]);
+    const [summary, setSummary] = useState<WeeklySummaryData | null>(null);
 
     const handleLocation = (lat: number, lon: number) => {
         setLat(lat);
         setLon(lon);
-        console.log("Selected:", lat, lon);
     };
 
     const toggleMap = () => {
@@ -38,16 +38,12 @@ export default function Home() {
                 setLat(position.coords.latitude);
                 setLon(position.coords.longitude);
             },
-            (error) => {
-                console.error("Error getting location:", error);
-            }
         );
     }, []);
 
     //This fetches data whenever coords update
     useEffect(() => {
         if (!API_BASE_URL) {
-            console.error("API URL is not defined!");
             return;
         }
         if (lat !== null && lon !== null) {
@@ -79,7 +75,7 @@ export default function Home() {
                         date={day.date}
                         maxTemp={day.maxTemperature}
                         minTemp={day.minTemperature}
-                        energy={day.estimatedEnergyKWh.toFixed(2)}
+                        energy={Number(day.estimatedEnergyKWh.toFixed(2))}
                         icon={mapWeatherCodeToIcon(day.weatherCode)}
                     />
                 ))}
