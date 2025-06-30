@@ -1,0 +1,42 @@
+"use client";
+
+import { useState } from "react";
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import L from "leaflet";
+
+import "leaflet/dist/leaflet.css";
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+    iconUrl: require("leaflet/dist/images/marker-icon.png"),
+    shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
+
+export default function MapPicker({ onLocationSelected }: { onLocationSelected: (lat: number, lon: number) => void }) {
+    const [position, setPosition] = useState<[number, number] | null>(null);
+
+    function LocationMarker() {
+        useMapEvents({
+            click(e) {
+                const { lat, lng } = e.latlng;
+                setPosition([lat, lng]);
+                onLocationSelected(lat, lng);
+            },
+        });
+
+        return position === null ? null : <Marker position={position} />;
+    }
+
+    return (
+        <MapContainer
+            center={[52.0, 19.0]}
+            zoom={5}
+            className="w-full h-[400px] aspect-video rounded-lg shadow-lg mb-6"
+        >
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <LocationMarker />
+        </MapContainer>
+    );
+}
