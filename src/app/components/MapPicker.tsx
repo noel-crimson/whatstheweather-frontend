@@ -5,11 +5,13 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
+
 delete L.Icon.Default.prototype._getIconUrl;
+
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-    iconUrl: require("leaflet/dist/images/marker-icon.png"),
-    shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+    iconRetinaUrl: "/leaflet_markers/marker-icon-2x.png",
+    iconUrl: "/leaflet_markers/marker-icon.png",
+    shadowUrl: "/leaflet_markers/marker-shadow.png",
 });
 
 export default function MapPicker({ onLocationSelected }: { onLocationSelected: (lat: number, lon: number) => void }) {
