@@ -6,15 +6,17 @@ import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 
-delete L.Icon.Default.prototype._getIconUrl;
-
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: "/leaflet_markers/marker-icon-2x.png",
     iconUrl: "/leaflet_markers/marker-icon.png",
     shadowUrl: "/leaflet_markers/marker-shadow.png",
 });
 
-export default function MapPicker({ onLocationSelected }: { onLocationSelected: (lat: number, lon: number) => void }) {
+export default function MapPicker(
+    /**
+     * @ignore
+     */
+    { onLocationSelected }: { onLocationSelected: (lat: number, lon: number) => void }) {
     const [position, setPosition] = useState<[number, number] | null>(null);
 
     function LocationMarker() {

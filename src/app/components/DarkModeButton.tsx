@@ -7,7 +7,6 @@ export default function DarkModeButton() {
 
     const toggleDarkMode = () => {
         const body = document.querySelector("body");
-        console.log("Dark mode button, changed to " + body.classList.contains("dark-mode"));
         if (body) {
             const isDark = body.classList.contains("dark-mode");
             setDarkMode(isDark);
