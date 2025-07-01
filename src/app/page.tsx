@@ -68,7 +68,7 @@ export default function Home() {
             <h1 className="text-4xl mt-6 mb-8">Whatstheweather?</h1>
 
 
-            <div className="grid grid-cols-7 gap-4 mb-24">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-24">
                 {forecast.map((day) => (
                     <DayForecast
                         key={day.date}
@@ -81,14 +81,14 @@ export default function Home() {
                 ))}
             </div>
 
-            {summary &&
+            {summary ?
                 <SummaryPanel
                     minTemperature={summary.minTemperature}
                     maxTemperature={summary.maxTemperature}
                     averagePressure={summary.averagePressure}
                     averageSunshineHours={summary.averageSunshineHours}
                     weatherSummary={summary.weatherSummary}
-                />}
+                /> : "Loading the API, please be patient (This takes about 2 minutes!)"}
             <div className="grid grid-cols-2 gap-10 mb-4">
                 <DarkModeButton/>
                 <button onClick={toggleMap} className="mb-4 px-4 py-2 bg-[var(--panels)] rounded">Toggle map</button>
