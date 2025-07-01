@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Weather Forecast Frontend (Next.js)
 
-First, run the development server:
+This is the frontend for the Weather Forecast application.  
+It displays a 7-day weather forecast with photovoltaic energy estimation and a weekly summary.
+It is available under the link https://whatstheweather-yg8k.onrender.com/ (may take 2 minutes to load for backend and for frontend each)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Built with Next.js 15.3.4   
+- Fetches data from the deployed Spring Boot backend at https://whatstheweather-backend.onrender.com/v1/weather/  
+- Automatically gets the user's location (or allows manual map selection with Leaflet)  
+- Supports light/dark mode toggle  
+- Styled with Tailwind CSS 4.1.11 and custom CSS variables
+- Responsive page layout which changes based on window size
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 15.3.4 
+- TypeScript
+- Tailwind CSS 4.1.11
+- Leaflet for map location picker
+- Deployed on [Render](https://render.com/)
